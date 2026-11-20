@@ -310,3 +310,11 @@
     text-decoration-line: underline;
   }
 }
+
+/* Page defaults: Figma's Surface/page background and Text/body color. */
+@layer base {
+  body {
+    background-color: var(--color-surface-page);
+    color: var(--color-text-body);
+  }
+}
