@@ -20,6 +20,13 @@ export const icons = {
   'mail': svg('<path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/>'),
   'check': svg('<path d="M20 6 9 17l-5-5"/>'),
   'minus': svg('<path d="M5 12h14"/>'),
+  'circle-check': svg('<circle cx="12" cy="12" r="10"/><path d="m16 9-5.5 5.5L8 12"/>'),
+  'triangle-alert': svg('<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>'),
+  'info': svg('<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>'),
+  'chevron-down': svg('<path d="m6 9 6 6 6-6"/>'),
+  'chevron-left': svg('<path d="m15 18-6-6 6-6"/>'),
+  'chevron-right': svg('<path d="m9 18 6-6-6-6"/>'),
+  'circle-help': svg('<circle cx="12" cy="12" r="10"/><path d="M9 9.5a3 2.5 0 016 0c0 2-2 2-3 3.5"/><path d="M12 17h.01"/>'),
 };
 
 export const iconNames = Object.keys(icons);
