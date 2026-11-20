@@ -55,7 +55,7 @@ No dependencies on other components.
 | ✅ | **Input** | Control inside `18:213` ("Input control") | States: Empty, Filled, Hover *(CSS)*, Focus *(CSS)*, Error, Disabled · Placeholder · Leading icon (optional) | none | mail (example) | `<input>` |
 | ✅ | **Form/Checkbox** | `18:480` | Selected: Off, On, Mixed · State: Default, Focus *(CSS)*, Disabled · Label | none | check, minus | `<input type="checkbox">` in a `<label>`; Mixed = `.indeterminate` |
 | ✅ | **Form/Radio** | `18:520` | Selected: Off, On · State: Default, Focus *(CSS)*, Disabled · Label | none | none | `<input type="radio">` in a `<label>` |
-| ⬜ | **Form/Switch** | `18:560` | Selected: Off, On · State: Default, Focus *(CSS)*, Disabled · Label | none | none | `<input type="checkbox" role="switch">` in a `<label>` |
+| ✅ | **Form/Switch** | `18:560` | Selected: Off, On · State: Default, Focus *(CSS)*, Disabled · Label | none | none | `<input type="checkbox" role="switch">` in a `<label>` |
 | ⬜ | **Feedback/Badge** | `18:720` | Tone: Neutral, Success, Warning, Error, Information · Label | none | none | `<span>` |
 | ⬜ | **Feedback/Alert** | `18:749` | Tone: Success, Warning, Error, Information · Title · Description | none | circle-check, triangle-alert, circle-alert, info | `<div role="status">` (`role="alert"` for urgent errors) |
 | ⬜ | **Navigation/Tab** | `18:763` | State: Default, Hover *(CSS)*, Selected, Disabled · Label | none | none | `<button role="tab" aria-selected>` (used inside Tabs) |
