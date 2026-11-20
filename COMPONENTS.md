@@ -70,7 +70,7 @@ Built from primitives (and, for the form fields, from Field).
 | | Component | Node | Properties / API | Depends on | Icons | HTML |
 |---|---|---|---|---|---|---|
 | ✅ | **Form/Label** | `18:103` | Required: No, Yes · Label · `help` (optional) | Tooltip | circle-help (only with `help`) | `<label>` + `<button type="button" aria-label>` for help |
-| ⬜ | **Field** | Structure of `18:213` (label, control, supporting text) | `label`, `required`, `help`, `helpText`, `error`, plus one control | Form/Label | circle-alert (error) | `<div>`: label `for` the control, help/error via `aria-describedby`, error sets `aria-invalid="true"` |
+| ✅ | **Field** | Structure of `18:213` (label, control, supporting text) | `label`, `required`, `help`, `helpText`, `error`, plus one control | Form/Label | circle-alert (error) | `<div>`: label `for` the control, help/error via `aria-describedby`, error sets `aria-invalid="true"` |
 | ⬜ | **Form/Text field** | `18:213` | State: Empty, Filled, Hover *(CSS)*, Focus *(CSS)*, Error, Disabled · Value · Placeholder · Helper text · Error message · Show label · Leading icon | Field, Input | mail, circle-alert | Field + `<input>` |
 | ⬜ | **Form/Select** | `18:634` | State: Empty, Filled, Focus *(CSS)*, Error, Disabled · Value · Placeholder · same Field props as Text field | Field | chevron-down | Field + `<select>` |
 | ⬜ | **Form/Textarea** | `18:697` | State: Empty, Filled, Focus *(CSS)*, Error, Disabled · Value · Placeholder · same Field props as Text field | Field | none | Field + `<textarea>` |
