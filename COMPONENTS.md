@@ -24,9 +24,18 @@ How to read this list:
    story. **Pagination** takes `{ current, total }`.
 4. **Label** gets an optional `help` prop that renders a focusable button with a Tooltip. No icon
    when `help` is omitted.
-5. **Button** gets `tone: "default" | "destructive"`. Destructive uses `error-700` (default),
-   `error-800` (hover) and `error-900` (active); all three tokens exist.
-   *Open:* the destructive focus ring color, and how tone applies to the outline and transparent variants.
+5. **Button** gets `tone: "default" | "destructive"`. The rule: destructive swaps the Primary color
+   scale for the Error scale, everywhere, in every variant, including the focus ring. Disabled uses
+   neutral tokens, so it looks the same in both tones. Colors from Figma, with every Error token
+   confirmed to exist:
+
+   | Variant | Default | Hover | Active | Focus ring |
+   |---|---|---|---|---|
+   | Solid | bg `primary-700` → `error-700` | bg `primary-800` → `error-800` | bg `primary-900` → `error-900` | `primary-700` → `error-700` |
+   | Outline | border, text, icon `primary-700` → `error-700` | bg `primary-100` → `error-100`; border, text, icon `primary-800` → `error-800` | bg `primary-200` → `error-200`; border, text, icon `primary-900` → `error-900` | `primary-700` → `error-700` |
+   | Transparent | text, icon `primary-700` → `error-700` | bg `primary-100` → `error-100`; text, icon `primary-800` → `error-800` | bg `primary-200` → `error-200`; text, icon `primary-900` → `error-900` | `primary-700` → `error-700` |
+
+   Solid text and icons stay `text-on-action` in both tones. Loading uses the Default colors.
 6. **Pagination** previous and next are real links.
 7. New composites: **Tabs** (tablist with arrow-key navigation) and **RadioGroup** (`<fieldset>` + `<legend>`).
 
@@ -38,7 +47,7 @@ No dependencies on other components.
 |---|---|---|---|---|---|---|
 | ✅ | **Button**: solid | `15:45` | State: Default, Hover *(CSS)*, Focus *(CSS)*, Active *(CSS)*, Disabled, Loading · Label · Show left/right icon · Left/Right icon | none | badge-plus, arrow-big-right, loader-circle | `<button>` |
 | ⬜ | **Button**: `variant` prop | `15:76` (outline), `15:107` (transparent) | `variant: "solid" \| "outline" \| "transparent"`, same states | none | same | `<button>` |
-| ⬜ | **Button**: `tone` prop | Not in Figma (Dialog `18:956` overrides the fill) | `tone: "default" \| "destructive"` with `error-700` / `800` / `900` | none | same | `<button>` |
+| ⬜ | **Button**: `tone` prop | Not in Figma (Dialog `18:956` overrides the fill) | `tone: "default" \| "destructive"`: Primary swapped for Error in every variant (decision 5) | none | same | `<button>` |
 | ⬜ | **Overlay/Tooltip** | `18:921` | Text | none | none | `<div role="tooltip" popover>` + `aria-describedby` on the trigger |
 | ⬜ | **Input** | Control inside `18:213` ("Input control") | States: Empty, Filled, Hover *(CSS)*, Focus *(CSS)*, Error, Disabled · Placeholder · Leading icon (optional) | none | mail (example) | `<input>` |
 | ⬜ | **Form/Checkbox** | `18:480` | Selected: Off, On, Mixed · State: Default, Focus *(CSS)*, Disabled · Label | none | check, minus | `<input type="checkbox">` in a `<label>`; Mixed = `.indeterminate` |
@@ -81,9 +90,10 @@ Changes to make in Figma so it matches the code.
 
 1. **Button variants:** merge Button/Solid, Button/Outline and Button/Transparent into one set with a
    *Variant* property (Solid, Outline, Transparent).
-2. **Destructive button:** add a *Tone* property (Default, Destructive) to Button. Destructive uses
-   Error/700 (default), Error/800 (hover) and Error/900 (active), plus a focus ring and a disabled
-   state. Then switch Dialog's Destructive intent to this tone instead of overriding the fill.
+2. **Destructive button:** add a *Tone* property (Default, Destructive) to Button, for all three
+   variants. Destructive is the Default tone with every Primary variable swapped for its Error
+   equivalent (100, 200, 700, 800, 900), including the Error/700 focus ring. Disabled stays the same.
+   Then switch Dialog's Destructive intent to this tone instead of overriding the fill.
 3. **Label help icon:** add a *Show help* boolean to Form/Label, off by default, and draw the help
    icon as a focusable button with Focus and Hover states that opens Overlay/Tooltip.
 4. **Pagination arrows:** replace the bare 20×20 chevron icons with Previous and Next link
