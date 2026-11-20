@@ -1,5 +1,5 @@
 import { fn } from 'storybook/test';
-import { Button, BUTTON_VARIANTS } from './Button.js';
+import { Button, BUTTON_VARIANTS, BUTTON_TONES } from './Button.js';
 import { iconNames } from '../../icons/index.js';
 
 const figma = (nodeId) => ({
@@ -20,6 +20,7 @@ export default {
   args: {
     label: 'Continue',
     variant: 'solid',
+    tone: 'default',
     leftIcon: 'badge-plus',
     rightIcon: 'arrow-big-right',
     disabled: false,
@@ -30,6 +31,11 @@ export default {
   argTypes: {
     label: { control: 'text', description: 'Visible text and accessible name.' },
     variant: { control: 'inline-radio', options: BUTTON_VARIANTS },
+    tone: {
+      control: 'inline-radio',
+      options: BUTTON_TONES,
+      description: 'Destructive swaps the Primary color scale for the Error scale.',
+    },
     leftIcon: { ...iconControl, description: 'Icon before the label, or none.' },
     rightIcon: { ...iconControl, description: 'Icon after the label, or none.' },
     disabled: { control: 'boolean', description: 'Native disabled attribute.' },
@@ -57,6 +63,12 @@ export const Transparent = {
   parameters: { design: figma('15-107') },
 };
 
+// Figma has no destructive Button yet; Dialog's Destructive intent overrides the fill.
+export const Destructive = {
+  args: { tone: 'destructive', label: 'Delete', leftIcon: 'none', rightIcon: 'none' },
+  parameters: { design: figma('18-956') },
+};
+
 export const NoIcons = {
   name: 'No icons',
   args: { leftIcon: 'none', rightIcon: 'none' },
@@ -79,12 +91,13 @@ export const Loading = {
   parameters: { design: figma('15-220') },
 };
 
-// Rows: each variant. Columns: default, disabled, loading. Hover, focus and active are
+// Rows: variant x tone. Columns: default, disabled, loading. Hover, focus and active are
 // CSS states: hover over, tab to or press any button to see them.
 export const AllStates = {
   name: 'All states',
   argTypes: {
     variant: { table: { disable: true } },
+    tone: { table: { disable: true } },
     disabled: { table: { disable: true } },
     loading: { table: { disable: true } },
   },
@@ -105,14 +118,16 @@ export const AllStates = {
       grid.append(heading);
     }
     for (const variant of BUTTON_VARIANTS) {
-      const rowLabel = document.createElement('p');
-      rowLabel.className = 'text-paragraph-sm text-text-body';
-      rowLabel.textContent = variant;
-      grid.append(rowLabel);
-      for (const [, overrides] of columns) {
-        const cell = document.createElement('div');
-        cell.append(Button({ ...args, variant, ...overrides }));
-        grid.append(cell);
+      for (const tone of BUTTON_TONES) {
+        const rowLabel = document.createElement('p');
+        rowLabel.className = 'text-paragraph-sm text-text-body';
+        rowLabel.textContent = `${variant} · ${tone}`;
+        grid.append(rowLabel);
+        for (const [, overrides] of columns) {
+          const cell = document.createElement('div');
+          cell.append(Button({ ...args, variant, tone, ...overrides }));
+          grid.append(cell);
+        }
       }
     }
     return grid;
