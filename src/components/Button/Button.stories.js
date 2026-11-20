@@ -1,5 +1,5 @@
 import { fn } from 'storybook/test';
-import { Button } from './Button.js';
+import { Button, BUTTON_VARIANTS } from './Button.js';
 import { iconNames } from '../../icons/index.js';
 
 const figma = (nodeId) => ({
@@ -19,6 +19,7 @@ export default {
   render: (args) => Button(args),
   args: {
     label: 'Continue',
+    variant: 'solid',
     leftIcon: 'badge-plus',
     rightIcon: 'arrow-big-right',
     disabled: false,
@@ -28,6 +29,7 @@ export default {
   },
   argTypes: {
     label: { control: 'text', description: 'Visible text and accessible name.' },
+    variant: { control: 'inline-radio', options: BUTTON_VARIANTS },
     leftIcon: { ...iconControl, description: 'Icon before the label, or none.' },
     rightIcon: { ...iconControl, description: 'Icon after the label, or none.' },
     disabled: { control: 'boolean', description: 'Native disabled attribute.' },
@@ -43,6 +45,16 @@ export default {
 
 export const Default = {
   parameters: { design: figma('15-20') },
+};
+
+export const Outline = {
+  args: { variant: 'outline' },
+  parameters: { design: figma('15-76') },
+};
+
+export const Transparent = {
+  args: { variant: 'transparent' },
+  parameters: { design: figma('15-107') },
 };
 
 export const NoIcons = {
@@ -67,43 +79,41 @@ export const Loading = {
   parameters: { design: figma('15-220') },
 };
 
-// Hover, Focus and Active are CSS states, so this story forces their look with
-// classes to show them next to each other. The buttons in the other stories show
-// the real states when you hover, tab to or press them.
-const FORCED_STATE_CLASSES = {
-  Hover: ['bg-primary-800!'],
-  Focus: ['outline-2', 'outline-offset-4', 'outline-primary-700'],
-  Active: ['bg-primary-900!'],
-};
-
+// Rows: each variant. Columns: default, disabled, loading. Hover, focus and active are
+// CSS states: hover over, tab to or press any button to see them.
 export const AllStates = {
   name: 'All states',
   argTypes: {
+    variant: { table: { disable: true } },
     disabled: { table: { disable: true } },
     loading: { table: { disable: true } },
   },
-  parameters: { design: figma('15-45') },
+  parameters: { design: figma('15-2') },
   render: (args) => {
-    const states = [
+    const columns = [
       ['Default', {}],
-      ['Hover', {}],
-      ['Focus', {}],
-      ['Active', {}],
       ['Disabled', { disabled: true }],
       ['Loading', { loading: true }],
     ];
     const grid = document.createElement('div');
-    grid.className = 'grid grid-cols-2 gap-600 sm:grid-cols-3 lg:grid-cols-6';
-    for (const [state, overrides] of states) {
-      const cell = document.createElement('div');
-      cell.className = 'flex flex-col items-center gap-400';
-      const caption = document.createElement('p');
-      caption.className = 'text-paragraph-sm text-text-body';
-      caption.textContent = FORCED_STATE_CLASSES[state] ? `${state} (simulated)` : state;
-      const button = Button({ ...args, ...overrides });
-      if (FORCED_STATE_CLASSES[state]) button.classList.add(...FORCED_STATE_CLASSES[state]);
-      cell.append(caption, button);
-      grid.append(cell);
+    grid.className = 'grid grid-cols-4 items-center gap-600';
+    grid.append(document.createElement('span'));
+    for (const [title] of columns) {
+      const heading = document.createElement('p');
+      heading.className = 'text-paragraph-sm-medium text-text-body';
+      heading.textContent = title;
+      grid.append(heading);
+    }
+    for (const variant of BUTTON_VARIANTS) {
+      const rowLabel = document.createElement('p');
+      rowLabel.className = 'text-paragraph-sm text-text-body';
+      rowLabel.textContent = variant;
+      grid.append(rowLabel);
+      for (const [, overrides] of columns) {
+        const cell = document.createElement('div');
+        cell.append(Button({ ...args, variant, ...overrides }));
+        grid.append(cell);
+      }
     }
     return grid;
   },

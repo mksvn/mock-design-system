@@ -1,25 +1,47 @@
 import { createIcon } from '../../icons/index.js';
 
-// Figma: Button/Solid (node 15:45).
+// Figma: Button/Solid (15:45), Button/Outline (15:76), Button/Transparent (15:107).
 // Hover, Focus and Active are CSS states, not props. Disabled and Loading are props.
 
-const BUTTON_CLASSES = [
+const BASE_CLASSES = [
   // Layout: 48px tall, 12/16px padding, 8px gap, 8px radius.
   'group inline-flex h-900 shrink-0 cursor-pointer items-center justify-center gap-200 rounded-lg px-400 py-300',
   // Label: Typography/paragraph md/medium.
   'font-body text-paragraph-md-medium whitespace-nowrap',
-  // Default.
-  'bg-primary-700 text-text-on-action',
-  // Hover and Active, only when the button can actually be used.
-  'enabled:not-aria-busy:hover:bg-primary-800',
-  'enabled:not-aria-busy:active:bg-primary-900',
   // Focus: 2px ring 4px outside the button; the outline follows the 8px radius (12px ring in Figma).
-  'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700',
+  'focus-visible:outline-2 focus-visible:outline-offset-4',
   // Disabled: dedicated tokens, not opacity.
-  'disabled:cursor-not-allowed disabled:bg-surface-disabled disabled:text-text-disabled',
+  'disabled:cursor-not-allowed disabled:text-text-disabled',
   // Loading.
   'aria-busy:cursor-wait',
 ].join(' ');
+
+// Colors per variant. Hover and Active apply only when the button can actually be used.
+// Every class is written out in full so Tailwind can find it (see CLAUDE.md).
+const VARIANT_CLASSES = {
+  solid: [
+    'bg-primary-700 text-text-on-action',
+    'enabled:not-aria-busy:hover:bg-primary-800',
+    'enabled:not-aria-busy:active:bg-primary-900',
+    'focus-visible:outline-primary-700',
+    'disabled:bg-surface-disabled',
+  ].join(' '),
+  outline: [
+    'border border-primary-700 text-primary-700',
+    'enabled:not-aria-busy:hover:border-primary-800 enabled:not-aria-busy:hover:bg-primary-100 enabled:not-aria-busy:hover:text-primary-800',
+    'enabled:not-aria-busy:active:border-primary-900 enabled:not-aria-busy:active:bg-primary-200 enabled:not-aria-busy:active:text-primary-900',
+    'focus-visible:outline-primary-700',
+    'disabled:border-border-disabled',
+  ].join(' '),
+  transparent: [
+    'text-primary-700',
+    'enabled:not-aria-busy:hover:bg-primary-100 enabled:not-aria-busy:hover:text-primary-800',
+    'enabled:not-aria-busy:active:bg-primary-200 enabled:not-aria-busy:active:text-primary-900',
+    'focus-visible:outline-primary-700',
+  ].join(' '),
+};
+
+export const BUTTON_VARIANTS = Object.keys(VARIANT_CLASSES);
 
 // Icons inherit the label color (currentColor); disabled icons use the icon token.
 const ICON_CLASSES = ['size-600', 'shrink-0', 'group-disabled:text-icons-disabled'];
@@ -31,10 +53,11 @@ function buttonIcon(name, ...extra) {
 }
 
 /**
- * Solid button.
+ * Button.
  *
  * @param {object} props
  * @param {string} props.label - Visible text; also the accessible name.
+ * @param {"solid"|"outline"|"transparent"} [props.variant]
  * @param {string|null} [props.leftIcon] - Icon name from src/icons, or null to hide it.
  * @param {string|null} [props.rightIcon] - Icon name from src/icons, or null to hide it.
  * @param {boolean} [props.disabled] - Sets the native disabled attribute.
@@ -47,6 +70,7 @@ function buttonIcon(name, ...extra) {
  */
 export function Button({
   label,
+  variant = 'solid',
   leftIcon = null,
   rightIcon = null,
   disabled = false,
@@ -54,9 +78,14 @@ export function Button({
   type = 'button',
   onClick,
 } = {}) {
+  const colors = VARIANT_CLASSES[variant];
+  if (!colors) {
+    throw new Error(`Unknown Button variant "${variant}". Use one of: ${BUTTON_VARIANTS.join(', ')}.`);
+  }
+
   const button = document.createElement('button');
   button.type = type;
-  button.className = BUTTON_CLASSES;
+  button.className = `${BASE_CLASSES} ${colors}`;
   button.disabled = Boolean(disabled);
 
   if (loading) {
@@ -82,7 +111,7 @@ export function Button({
 
   if (rightIcon) {
     // While loading, the right icon is hidden but keeps its space (as in Figma, where
-    // Loading is 166px like the other states), so the button doesn't change width.
+    // Loading is the same width as the other states), so the button doesn't change width.
     button.append(loading ? buttonIcon(rightIcon, 'invisible') : buttonIcon(rightIcon));
   }
 
