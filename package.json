@@ -1,0 +1,22 @@
+{
+  "name": "mock-design-system",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^10.6.7",
+    "@storybook/addon-designs": "^12.0.0",
+    "@storybook/html-vite": "^10.6.7",
+    "@tailwindcss/vite": "^4.3.5",
+    "storybook": "^10.6.7",
+    "tailwindcss": "^4.3.5",
+    "vite": "^8.3.6"
+  }
+}
