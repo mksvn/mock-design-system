@@ -59,7 +59,7 @@ No dependencies on other components.
 | ✅ | **Feedback/Badge** | `18:720` | Tone: Neutral, Success, Warning, Error, Information · Label | none | none | `<span>` |
 | ✅ | **Feedback/Alert** | `18:749` | Tone: Success, Warning, Error, Information · Title · Description | none | circle-check, triangle-alert, circle-alert, info | `<div role="status">` (`role="alert"` for urgent errors) |
 | ✅ | **Navigation/Tab** | `18:763` | State: Default, Hover *(CSS)*, Selected, Disabled · Label | none | none | `<button role="tab" aria-selected>` (used inside Tabs) |
-| ⬜ | **Navigation/Pagination item** | `18:774` | State: Default, Hover *(CSS)*, Current, Disabled · Label | none | none | `<a href>`; Current = `aria-current="page"` |
+| ✅ | **Navigation/Pagination item** | `18:774` | State: Default, Hover *(CSS)*, Current, Disabled · Label | none | none | `<a href>`; Current = `aria-current="page"` |
 | ⬜ | **Navigation/Accordion** | `18:804` | State: Closed, Open · Question · Answer | none | chevron-down | `<details>` + `<summary>` (rotate the chevron rather than swap icons) |
 | ⬜ | **Data/Table cell** | `18:818` | Type: Header, Body, Numeric · Value | none | none | `<th scope="col">` / `<td>`; Numeric right-aligned with tabular numbers |
 
