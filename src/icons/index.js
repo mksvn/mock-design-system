@@ -1,0 +1,32 @@
+// Inline SVG strings for the Lucide icons this design system uses.
+// Source: lucide-static v1.76.0 (https://lucide.dev), ISC License,
+// Copyright (c) Lucide Contributors. Add icons here only when a component needs them.
+//
+// Every icon is 24x24, stroke-width 2, stroke="currentColor" (so it takes the
+// surrounding text color) and aria-hidden="true" (decorative).
+
+const svg = (body) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
+
+export const icons = {
+  'badge-plus': svg(
+    '<path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><line x1="12" x2="12" y1="8" y2="16"/><line x1="8" x2="16" y1="12" y2="12"/>',
+  ),
+  'arrow-big-right': svg(
+    '<path d="M13.207 19.793a.707.707 0 0 1-1.207-.5V16a1 1 0 0 0-1-1H5a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h6a1 1 0 0 0 1-1V4.707a.707.707 0 0 1 1.207-.5l6.94 6.94a1.207 1.207 0 0 1 0 1.707z"/>',
+  ),
+  'loader-circle': svg('<path d="M21 12a9 9 0 1 1-6.219-8.56"/>'),
+};
+
+export const iconNames = Object.keys(icons);
+
+/** Parse an icon into an <svg> element. Throws for unknown names so typos fail loudly. */
+export function createIcon(name) {
+  const markup = icons[name];
+  if (!markup) {
+    throw new Error(`Unknown icon "${name}". Available icons: ${iconNames.join(', ')}.`);
+  }
+  const template = document.createElement('template');
+  template.innerHTML = markup;
+  return template.content.firstElementChild;
+}
