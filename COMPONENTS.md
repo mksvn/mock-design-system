@@ -85,7 +85,7 @@ Larger reusable sections.
 
 | | Component | Node | Properties / API | Depends on | Icons | HTML |
 |---|---|---|---|---|---|---|
-| ⬜ | **Table** | `18:918` (table), `18:847` (row) | `Table({ columns, rows })`; row State: Default, Hover *(CSS)*, Selected; Empty state; "Members" example story | Data/Table cell, Button | none | `<table>` with `<caption>`, `<thead>`, `<tbody>`; the empty state is one full-width row |
+| ✅ | **Table** | `18:918` (table), `18:847` (row) | `Table({ columns, rows })`; row State: Default, Hover *(CSS)*, Selected; Empty state; "Members" example story | Data/Table cell, Button | none | `<table>` with `<caption>`, `<thead>`, `<tbody>`; the empty state is one full-width row |
 
 ## Figma fixes
 
@@ -114,3 +114,9 @@ Changes to make in Figma so it matches the code.
 8. **Small cleanups:**
    - Button/Solid binds `Border width/sm` to a stroke it doesn't draw; remove that binding.
    - Label the "Members" table and row as examples of the generic Table.
+9. **Disabled help text contrast:** disabled fields color their help text Text/disabled (#949494, 3.0:1),
+   which fails the 4.5:1 contrast minimum. Keep it Text/body, or darken Text/disabled (OPEN-QUESTIONS #22).
+10. **Pill and circle radius:** the switch track uses a raw 12px radius and the radio circle has none. Add a
+    `Border radius/full` variable (OPEN-QUESTIONS #9).
+11. **Missing states the code had to invent:** focus for Tab, hover for Checkbox/Radio/Switch, error + focus
+    for fields, and a backdrop for Dialog. Draw them in Figma so code and design agree (OPEN-QUESTIONS #7, #8, #11, #26).
