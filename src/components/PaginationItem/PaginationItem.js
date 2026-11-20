@@ -4,10 +4,10 @@ import { createIcon } from '../../icons/index.js';
 // Default Neutral/700 on white, hover Primary/100, current white on Primary/700, disabled text
 // Text/disabled. Also used for Pagination's previous/next links (with an icon).
 
-const BASE_CLASSES = [
-  'inline-flex size-900 items-center justify-center rounded-lg font-body text-paragraph-md-medium',
-  'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700',
-].join(' ');
+/** The 48px cell shape, shared with Pagination's ellipsis. */
+export const PAGINATION_CELL_CLASSES = 'inline-flex size-900 items-center justify-center rounded-lg font-body text-paragraph-md-medium';
+
+const BASE_CLASSES = `${PAGINATION_CELL_CLASSES} focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700`;
 
 const STATE_CLASSES = {
   default: 'bg-neutral-white text-neutral-700 hover:bg-primary-100',
