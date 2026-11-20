@@ -77,7 +77,7 @@ Built from primitives (and, for the form fields, from Field).
 | ✅ | **RadioGroup** | Not in Figma | `legend`, `name`, `options`, `value`, `disabled`, `error` | Form/Radio | none | `<fieldset>` + `<legend>` |
 | ✅ | **Tabs** | Not in Figma | `tabs: [{ label, panel }]`, `selected` | Navigation/Tab | none | `role="tablist"` with arrow keys, Home and End; panels are `role="tabpanel"`, linked with `aria-controls` / `aria-labelledby` |
 | ✅ | **Navigation/Pagination** | `18:776` | `{ current, total }`; previous and next are links | Navigation/Pagination item | chevron-left, chevron-right | `<nav aria-label="Pagination">` + `<ul>`; previous/next `<a rel="prev/next">`, with no `href` at the first and last page |
-| ⬜ | **Overlay/Dialog** | `18:956` | Intent: Default, Destructive · Title · Description | Button (`variant`, `tone`) | none | `<dialog>` opened with `showModal()`, `aria-labelledby` the title |
+| ✅ | **Overlay/Dialog** | `18:956` | Intent: Default, Destructive · Title · Description | Button (`variant`, `tone`) | none | `<dialog>` opened with `showModal()`, `aria-labelledby` the title |
 
 ## 3. Patterns
 
