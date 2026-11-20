@@ -75,7 +75,7 @@ Built from primitives (and, for the form fields, from Field).
 | ✅ | **Form/Select** | `18:634` | State: Empty, Filled, Focus *(CSS)*, Error, Disabled · Value · Placeholder · same Field props as Text field | Field | chevron-down | Field + `<select>` |
 | ✅ | **Form/Textarea** | `18:697` | State: Empty, Filled, Focus *(CSS)*, Error, Disabled · Value · Placeholder · same Field props as Text field | Field | none | Field + `<textarea>` |
 | ✅ | **RadioGroup** | Not in Figma | `legend`, `name`, `options`, `value`, `disabled`, `error` | Form/Radio | none | `<fieldset>` + `<legend>` |
-| ⬜ | **Tabs** | Not in Figma | `tabs: [{ label, panel }]`, `selected` | Navigation/Tab | none | `role="tablist"` with arrow keys, Home and End; panels are `role="tabpanel"`, linked with `aria-controls` / `aria-labelledby` |
+| ✅ | **Tabs** | Not in Figma | `tabs: [{ label, panel }]`, `selected` | Navigation/Tab | none | `role="tablist"` with arrow keys, Home and End; panels are `role="tabpanel"`, linked with `aria-controls` / `aria-labelledby` |
 | ⬜ | **Navigation/Pagination** | `18:776` | `{ current, total }`; previous and next are links | Navigation/Pagination item | chevron-left, chevron-right | `<nav aria-label="Pagination">` + `<ul>`; previous/next `<a rel="prev/next">`, with no `href` at the first and last page |
 | ⬜ | **Overlay/Dialog** | `18:956` | Intent: Default, Destructive · Title · Description | Button (`variant`, `tone`) | none | `<dialog>` opened with `showModal()`, `aria-labelledby` the title |
 
