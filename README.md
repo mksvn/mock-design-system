@@ -2,7 +2,7 @@
 
 A 22-component accessible UI library, built in plain JavaScript and Tailwind CSS from a Figma design system, with every value taken from Figma variables.
 
-**Live Storybook:** _coming soon_
+**Live Storybook:** https://mksvn.github.io/mock-design-system/
 
 ## Stack
 
