@@ -52,7 +52,7 @@ No dependencies on other components.
 | ✅ | **Button**: `variant` prop | `15:76` (outline), `15:107` (transparent) | `variant: "solid" \| "outline" \| "transparent"`, same states | none | same | `<button>` |
 | ✅ | **Button**: `tone` prop | Not in Figma (Dialog `18:956` overrides the fill) | `tone: "default" \| "destructive"`: Primary swapped for Error in every variant (decision 5) | none | same | `<button>` |
 | ✅ | **Overlay/Tooltip** | `18:921` | Text | none | none | `<div role="tooltip" popover>` + `aria-describedby` on the trigger |
-| ⬜ | **Input** | Control inside `18:213` ("Input control") | States: Empty, Filled, Hover *(CSS)*, Focus *(CSS)*, Error, Disabled · Placeholder · Leading icon (optional) | none | mail (example) | `<input>` |
+| ✅ | **Input** | Control inside `18:213` ("Input control") | States: Empty, Filled, Hover *(CSS)*, Focus *(CSS)*, Error, Disabled · Placeholder · Leading icon (optional) | none | mail (example) | `<input>` |
 | ⬜ | **Form/Checkbox** | `18:480` | Selected: Off, On, Mixed · State: Default, Focus *(CSS)*, Disabled · Label | none | check, minus | `<input type="checkbox">` in a `<label>`; Mixed = `.indeterminate` |
 | ⬜ | **Form/Radio** | `18:520` | Selected: Off, On · State: Default, Focus *(CSS)*, Disabled · Label | none | none | `<input type="radio">` in a `<label>` |
 | ⬜ | **Form/Switch** | `18:560` | Selected: Off, On · State: Default, Focus *(CSS)*, Disabled · Label | none | none | `<input type="checkbox" role="switch">` in a `<label>` |
