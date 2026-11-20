@@ -1,4 +1,312 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens generated from the Figma file "Mock Design System".
+ * Values are resolved (no var() references between tokens).
+ */
 @theme {
+  /* Remove Tailwind's default palette so only Figma colors exist. */
+  --color-*: initial;
+
+  /* Figma collection: Brand · Primitive colors */
+  --color-forest-900: #003d35;
+  --color-forest-800: #005b4f;
+  --color-forest-700: #007969;
+  --color-forest-600: #009883;
+  --color-forest-500: #33ac9c;
+  --color-forest-400: #66c1b5;
+  --color-forest-300: #99d6ce;
+  --color-forest-200: #cceae6;
+  --color-forest-100: #e5f5f3;
+  --color-navy-900: #00192f;
+  --color-navy-800: #002646;
+  --color-navy-700: #00325e;
+  --color-navy-600: #003f75;
+  --color-navy-500: #336591;
+  --color-navy-400: #668cac;
+  --color-navy-300: #99b2c8;
+  --color-navy-200: #ccd9e3;
+  --color-navy-100: #e5ecf1;
+  --color-orange-900: #3d1900;
+  --color-orange-800: #5b2600;
+  --color-orange-700: #793200;
+  --color-orange-600: #983f00;
+  --color-orange-500: #ac6533;
+  --color-orange-400: #c18c66;
+  --color-orange-300: #d6b299;
+  --color-orange-200: #ead9cc;
+  --color-orange-100: #fff0e5;
+  --color-red-900: #3d0000;
+  --color-red-800: #5b0000;
+  --color-red-700: #790000;
+  --color-red-600: #980000;
+  --color-red-500: #ac3333;
+  --color-red-400: #c16666;
+  --color-red-300: #d69999;
+  --color-red-200: #eacccc;
+  --color-red-100: #ffe5e5;
+  --color-green-900: #003d00;
+  --color-green-800: #005b00;
+  --color-green-700: #007900;
+  --color-green-600: #009800;
+  --color-green-500: #33ac33;
+  --color-green-400: #66c166;
+  --color-green-300: #99d699;
+  --color-green-200: #cceacc;
+  --color-green-100: #e5ffe5;
+  --color-grey-900: #1f1f1f;
+  --color-grey-800: #2e2e2e;
+  --color-grey-700: #3d3d3d;
+  --color-grey-600: #4d4d4d;
+  --color-grey-500: #707070;
+  --color-grey-400: #949494;
+  --color-grey-300: #b8b8b8;
+  --color-grey-200: #dbdbdb;
+  --color-grey-100: #f2f2f2;
+  --color-light-blue-900: #00394d;
+  --color-light-blue-800: #005673;
+  --color-light-blue-700: #007399;
+  --color-light-blue-600: #008fbf;
+  --color-light-blue-500: #33a6cc;
+  --color-light-blue-400: #66bcd9;
+  --color-light-blue-300: #99d2e5;
+  --color-light-blue-200: #cce9f2;
+  --color-light-blue-100: #e5f9ff;
+  --color-foundation-white: #ffffff;
+  --color-foundation-black: #000000;
+
+  /* Figma collection: Alias · Semantic colors */
+  --color-primary-100: #e5f5f3;
+  --color-primary-200: #cceae6;
+  --color-primary-300: #99d6ce;
+  --color-primary-400: #66c1b5;
+  --color-primary-default: #33ac9c;
+  --color-primary-600: #009883;
+  --color-primary-700: #007969;
+  --color-primary-800: #005b4f;
+  --color-primary-900: #003d35;
+  --color-secondary-100: #e5ecf1;
+  --color-secondary-200: #ccd9e3;
+  --color-secondary-300: #99b2c8;
+  --color-secondary-400: #668cac;
+  --color-secondary-default: #336591;
+  --color-secondary-600: #003f75;
+  --color-secondary-700: #00325e;
+  --color-secondary-800: #002646;
+  --color-secondary-900: #00192f;
+  --color-warning-100: #fff0e5;
+  --color-warning-200: #ead9cc;
+  --color-warning-300: #d6b299;
+  --color-warning-400: #c18c66;
+  --color-warning-default: #ac6533;
+  --color-warning-600: #983f00;
+  --color-warning-700: #793200;
+  --color-warning-800: #5b2600;
+  --color-warning-900: #3d1900;
+  --color-error-100: #ffe5e5;
+  --color-error-200: #eacccc;
+  --color-error-300: #d69999;
+  --color-error-400: #c16666;
+  --color-error-default: #ac3333;
+  --color-error-600: #980000;
+  --color-error-700: #790000;
+  --color-error-800: #5b0000;
+  --color-error-900: #3d0000;
+  --color-success-100: #e5ffe5;
+  --color-success-200: #cceacc;
+  --color-success-300: #99d699;
+  --color-success-400: #66c166;
+  --color-success-default: #33ac33;
+  --color-success-600: #009800;
+  --color-success-700: #007900;
+  --color-success-800: #005b00;
+  --color-success-900: #003d00;
+  --color-neutral-100: #f2f2f2;
+  --color-neutral-200: #dbdbdb;
+  --color-neutral-300: #b8b8b8;
+  --color-neutral-400: #949494;
+  --color-neutral-default: #707070;
+  --color-neutral-600: #4d4d4d;
+  --color-neutral-700: #3d3d3d;
+  --color-neutral-800: #2e2e2e;
+  --color-neutral-900: #1f1f1f;
+  --color-neutral-white: #ffffff;
+  --color-neutral-black: #000000;
+  --color-information-100: #e5f9ff;
+  --color-information-200: #cce9f2;
+  --color-information-300: #99d2e5;
+  --color-information-400: #66bcd9;
+  --color-information-default: #33a6cc;
+  --color-information-600: #008fbf;
+  --color-information-700: #007399;
+  --color-information-800: #005673;
+  --color-information-900: #00394d;
+
+  /* Figma collection: Mapped · Role colors */
+  --color-text-headings: #2e2e2e;
+  --color-text-body: #3d3d3d;
+  --color-text-action: #33ac9c;
+  --color-text-action-hover: #009883;
+  --color-text-disabled: #949494;
+  --color-text-information: #33a6cc;
+  --color-text-warning: #ac6533;
+  --color-text-success: #33ac33;
+  --color-text-error: #ac3333;
+  --color-text-on-action: #ffffff;
+  --color-icons-default: #3d3d3d;
+  --color-icons-action: #33ac9c;
+  --color-icons-action-hover: #009883;
+  --color-icons-disabled: #949494;
+  --color-icons-information: #33a6cc;
+  --color-icons-warning: #ac6533;
+  --color-icons-success: #33ac33;
+  --color-icons-error: #ac3333;
+  --color-icons-on-action: #ffffff;
+  --color-surface-page: #ffffff;
+  --color-surface-default: #ffffff;
+  --color-surface-action: #33ac9c;
+  --color-surface-action-hover: #009883;
+  --color-surface-success: #e5ffe5;
+  --color-surface-warning: #fff0e5;
+  --color-surface-information: #e5f9ff;
+  --color-surface-error: #ffe5e5;
+  --color-surface-disabled: #dbdbdb;
+  --color-border-default: #f2f2f2;
+  --color-border-success: #cceacc;
+  --color-border-information: #cce9f2;
+  --color-border-warning: #ead9cc;
+  --color-border-error: #eacccc;
+  --color-border-action: #33ac9c;
+  --color-border-action-hover: #009883;
+  --color-border-focus: #33ac9c;
+  --color-border-disabled: #b8b8b8;
+
+  /* Figma collection: Brand · Spacing */
+  --spacing-0: 0;
+  --spacing-25: 0.0625rem;
+  --spacing-50: 0.125rem;
+  --spacing-100: 0.25rem;
+  --spacing-200: 0.5rem;
+  --spacing-300: 0.75rem;
+  --spacing-400: 1rem;
+  --spacing-500: 1.25rem;
+  --spacing-600: 1.5rem;
+  --spacing-700: 2rem;
+  --spacing-800: 2.5rem;
+  --spacing-900: 3rem;
+  --spacing-1000: 3.5rem;
+  --spacing-1100: 4rem;
+
+  /* Figma collection: Alias · Border radius */
+  --radius-none: 0;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+
+  /* Figma collection: Brand · Font families */
+  --font-headings: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Make Inter the default family (preflight reads --font-sans). */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Figma collection: Brand · Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Figma text styles · sizes from collection "Responsive", Mobile mode */
+  --text-h1: 2.5rem;
+  --text-h1--line-height: 3rem;
+  --text-h1--font-weight: 700;
+  --text-h2: 2rem;
+  --text-h2--line-height: 2.375rem;
+  --text-h2--font-weight: 700;
+  --text-h3: 1.75rem;
+  --text-h3--line-height: 2.125rem;
+  --text-h3--font-weight: 700;
+  --text-h4: 1.5rem;
+  --text-h4--line-height: 1.75rem;
+  --text-h4--font-weight: 700;
+  --text-h5: 1.25rem;
+  --text-h5--line-height: 1.5rem;
+  --text-h5--font-weight: 700;
+  --text-h6: 1.125rem;
+  --text-h6--line-height: 1.375rem;
+  --text-h6--font-weight: 700;
+  --text-paragraph-lg: 1.125rem;
+  --text-paragraph-lg--line-height: 1.375rem;
+  --text-paragraph-lg--font-weight: 400;
+  --text-paragraph-lg-link: 1.125rem;
+  --text-paragraph-lg-link--line-height: 1.375rem;
+  --text-paragraph-lg-link--font-weight: 400;
+  --text-paragraph-lg-medium: 1.125rem;
+  --text-paragraph-lg-medium--line-height: 1.375rem;
+  --text-paragraph-lg-medium--font-weight: 500;
+  --text-paragraph-lg-bold: 1.125rem;
+  --text-paragraph-lg-bold--line-height: 1.375rem;
+  --text-paragraph-lg-bold--font-weight: 700;
+  --text-paragraph-md: 1rem;
+  --text-paragraph-md--line-height: 1.25rem;
+  --text-paragraph-md--font-weight: 400;
+  --text-paragraph-md-link: 1rem;
+  --text-paragraph-md-link--line-height: 1.25rem;
+  --text-paragraph-md-link--font-weight: 400;
+  --text-paragraph-md-medium: 1rem;
+  --text-paragraph-md-medium--line-height: 1.25rem;
+  --text-paragraph-md-medium--font-weight: 500;
+  --text-paragraph-md-bold: 1rem;
+  --text-paragraph-md-bold--line-height: 1.25rem;
+  --text-paragraph-md-bold--font-weight: 700;
+  --text-paragraph-sm: 0.875rem;
+  --text-paragraph-sm--line-height: 1rem;
+  --text-paragraph-sm--font-weight: 400;
+  --text-paragraph-sm-link: 0.875rem;
+  --text-paragraph-sm-link--line-height: 1rem;
+  --text-paragraph-sm-link--font-weight: 400;
+  --text-paragraph-sm-medium: 0.875rem;
+  --text-paragraph-sm-medium--line-height: 1rem;
+  --text-paragraph-sm-medium--font-weight: 500;
+  --text-paragraph-sm-bold: 0.875rem;
+  --text-paragraph-sm-bold--line-height: 1rem;
+  --text-paragraph-sm-bold--font-weight: 700;
+  --text-paragraph-xsm: 0.75rem;
+  --text-paragraph-xsm--line-height: 0.875rem;
+  --text-paragraph-xsm--font-weight: 400;
+  --text-paragraph-xsm-link: 0.75rem;
+  --text-paragraph-xsm-link--line-height: 0.875rem;
+  --text-paragraph-xsm-link--font-weight: 400;
+  --text-paragraph-xsm-medium: 0.75rem;
+  --text-paragraph-xsm-medium--line-height: 0.875rem;
+  --text-paragraph-xsm-medium--font-weight: 500;
+  --text-paragraph-xsm-bold: 0.75rem;
+  --text-paragraph-xsm-bold--line-height: 0.875rem;
+  --text-paragraph-xsm-bold--font-weight: 700;
+}
+
+/* Figma collection: Responsive · Desktop mode (@theme above holds Mobile values). */
+@media (width >= 64rem) {
+  :root {
+    --text-h1: 4rem;
+    --text-h1--line-height: 4.75rem;
+    --text-h2: 3rem;
+    --text-h2--line-height: 3.625rem;
+    --text-h3: 2.5rem;
+    --text-h3--line-height: 3rem;
+    --text-h4: 2rem;
+    --text-h4--line-height: 2.375rem;
+    --text-h5: 1.5rem;
+    --text-h5--line-height: 1.75rem;
+    --text-h6: 1.25rem;
+    --text-h6--line-height: 1.5rem;
+  }
+}
+
+/* Figma "link" text styles are underlined; Tailwind text tokens cannot carry decoration. */
+@layer utilities {
+  .text-paragraph-lg-link,
+  .text-paragraph-md-link,
+  .text-paragraph-sm-link,
+  .text-paragraph-xsm-link {
+    text-decoration-line: underline;
+  }
 }
